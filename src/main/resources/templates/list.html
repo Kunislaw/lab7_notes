@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Lab 7 - ZPO</title>
+</head>
+<body>
+<h1>Add your note</h1>
+<form action="#" th:action="@{/list}" th:object="${newNote}" method="post">
+    Importance :<select name="cars" th:field="*{importance}">
+    <th:block th:each="importance : ${importances}">
+        <option th:value="${importance}" th:text="${importance}"></option>
+    </th:block>
+</select><br />
+    Your note:<input type="text" th:field="*{text}"><br />
+    <input type="submit" value="Wyślij notke">
+</form>
+
+<h1>List of your notes:</h1>
+<table>
+    <tr>
+        <th>Importance</th>
+        <th>Timestamp</th>
+        <th>Note</th>
+    </tr>
+    <th:block th:each="note: ${notes}">
+        <tr>
+            <td th:text="${note.importance}"></td>
+            <td th:text="${note.timestamp}"></td>
+            <td th:text="${note.text}"></td>
+        </tr>
+    </th:block>
+</table>
+</body>
+</html>
