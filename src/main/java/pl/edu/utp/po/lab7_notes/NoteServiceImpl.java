@@ -18,8 +18,8 @@ public class NoteServiceImpl implements NoteService {
         noteRepo.delete(note);
     }
     @Override
-    public void updateNote(Note note, ImportanceEnum importanceEnum, String text){
-        Note noteTemp = noteRepo.getOne(note.getId());
+    public void updateNote(Long id, ImportanceEnum importanceEnum, String text){
+        Note noteTemp = noteRepo.getOne(id);
         if(noteTemp != null){
             noteTemp.setImportance(importanceEnum);
             noteTemp.setText(text);
@@ -29,5 +29,9 @@ public class NoteServiceImpl implements NoteService {
     @Override
     public List<Note> getNotes(){
         return noteRepo.findByOrderByTimestampDesc();
+    }
+    @Override
+    public Note getNote(Long id){
+        return noteRepo.findOneById(id);
     }
 }

@@ -6,4 +6,5 @@ import java.util.List;
 
 public interface NoteRepo extends JpaRepository<Note,Long> {
     List<Note> findByOrderByTimestampDesc();
+    Note findOneById(Long id);
 }

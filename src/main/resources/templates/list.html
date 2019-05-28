@@ -13,7 +13,7 @@
     </th:block>
 </select><br />
     Your note:<input type="text" th:field="*{text}"><br />
-    <input type="submit" value="Wyślij notke">
+    <input type="submit" value="Send note">
 </form>
 
 <h1>List of your notes:</h1>
@@ -23,11 +23,13 @@
         <th>Timestamp</th>
         <th>Note</th>
     </tr>
-    <th:block th:each="note: ${notes}">
+    <th:block th:each="note : ${notes}">
         <tr>
             <td th:text="${note.importance}"></td>
             <td th:text="${note.timestamp}"></td>
             <td th:text="${note.text}"></td>
+            <td><a th:href="@{/list/edit/{id}(id=${note.id})}">Edit</a></td>
+            <td><a th:href="@{/list/delete/{id}(id=${note.id})}">Delete</a></td>
         </tr>
     </th:block>
 </table>
